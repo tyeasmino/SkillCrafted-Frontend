@@ -25,7 +25,7 @@ const ContactUs = () => {
 
     try { 
       const res = await axios.post(
-        "http://127.0.0.1:8000/contact_us/",
+        "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/contact_us/",
         formData,
         {
           headers: {

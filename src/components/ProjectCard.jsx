@@ -17,7 +17,7 @@ const ProjectCard = ({ limit }) => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/projects/projectList/');
+        const response = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/');
         setProjects(response.data);  // Set all projects when the page loads
         setFilteredProjects(response.data); // Set filteredProjects to all projects initially
       } catch (error) {
@@ -31,7 +31,7 @@ const ProjectCard = ({ limit }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:8000/projects/categoryList/');
+        const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/categoryList/');
         setCategories(res.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -44,7 +44,7 @@ const ProjectCard = ({ limit }) => {
   useEffect(() => {
     const fetchSkillSeekers = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:8000/skillSeeker/skill-seekers/');
+        const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/skill-seekers/');
         const skillSeekerData = res.data.reduce((acc, skillSeeker) => {
           acc[skillSeeker.id] = skillSeeker.company_logo;
           return acc;
@@ -74,7 +74,7 @@ const ProjectCard = ({ limit }) => {
     }
 
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/projects/projectList/${query}`);
+      const res = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/${query}`);
       setFilteredProjects(res.data);  // Set filtered projects
     } catch (error) {
       console.error('Error fetching filtered projects: ', error);

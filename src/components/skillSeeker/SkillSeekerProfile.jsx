@@ -53,7 +53,7 @@ const SkillSeekerProfile = () => {
             try {
                 const token = localStorage.getItem("token");
                 const res = await axios.get(
-                    `http://127.0.0.1:8000/skillSeeker/skill-seekers/${user.sk}`,
+                    `https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/skill-seekers/${user.sk}`,
                     {
                         headers: {
                             Authorization: `Token ${token}`,
@@ -134,7 +134,7 @@ const SkillSeekerProfile = () => {
 
         try {
             const res = await axios.put(
-                `http://127.0.0.1:8000/skillSeeker/skill-seekers/${user.sk}/`,
+                `https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/skill-seekers/${user.sk}/`,
                 updatedProfileData,
                 {
                     headers: {
@@ -161,7 +161,7 @@ const SkillSeekerProfile = () => {
     useEffect(() => {
         const fetchDesignations = async () => {
             try {
-                const res = await axios.get("http://127.0.0.1:8000/skillSeeker/designation/");
+                const res = await axios.get("https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/designation/");
                 setDesignations(res.data);
             } catch (error) {
                 console.error("Error fetching designations:", error);
@@ -174,7 +174,7 @@ const SkillSeekerProfile = () => {
     useEffect(() => {
         const fetchSpecializations = async () => {
             try {
-                const res = await axios.get("http://127.0.0.1:8000/skillSeeker/specialization/");
+                const res = await axios.get("https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/specialization/");
                 setSpecializations(res.data);
             } catch (error) {
                 console.error("Error fetching specializations:", error);

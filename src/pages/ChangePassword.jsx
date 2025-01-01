@@ -29,7 +29,7 @@ const ChangePassword = () => {
 
     try {
         const res = await axios.post(
-            "http://127.0.0.1:8000/auth/password/change/",
+            "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/auth/password/change/",
             formData,
             {
                 headers: {

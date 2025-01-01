@@ -58,7 +58,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/projects/categoryList/');
+        const response = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/categoryList/');
         setCategories(response.data); // Set categories from API
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -72,7 +72,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     const fetchProjectDetails = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/projects/projectList/${id}/`);
+        const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/${id}/`);
         setProject(response.data);
         setFormData({
           category: response.data.category,
@@ -91,7 +91,7 @@ const ProjectDetails = () => {
 
     const fetchProposals = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/skillCrafter/filtered-project-proposals/?project=${id}`);
+        const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/filtered-project-proposals/?project=${id}`);
         setProposals(response.data); // Store the list of proposals
       } catch (error) {
         console.error('Error fetching proposals:', error);
@@ -136,7 +136,7 @@ const ProjectDetails = () => {
     try {
       // Send PUT request to update the proposal status
       const response = await axios.put(
-        `http://127.0.0.1:8000/skillCrafter/project-proposal/${selectedProposal.id}/`,
+        `https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-proposal/${selectedProposal.id}/`,
         updatedProposalData
       );
 
@@ -158,7 +158,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     const fetchSpecializations = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/skillSeeker/specialization/");
+        const res = await axios.get("https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/specialization/");
         setSpecializations(res.data);
         console.log('specializations: ', res.data);
       } catch (error) {
@@ -177,7 +177,7 @@ const ProjectDetails = () => {
     if (formData.skillSeeker) {
       const fetchCompanyDetails = async () => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/skillSeeker/skill-seekers/${formData.skillSeeker}/`);
+          const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/skill-seekers/${formData.skillSeeker}/`);
           setCompany(response.data); // Set company details from API
         } catch (error) {
           console.error('Error fetching company details:', error);
@@ -201,7 +201,7 @@ const ProjectDetails = () => {
     } else {
       // Continue with proposal submission
       console.log('Submitting proposal...', proposal);
-      axios.post(`http://127.0.0.1:8000/skillCrafter/project-proposal/`, {
+      axios.post(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-proposal/`, {
         project: id,
         proposed_by: user.ck,
         proposal: proposal.proposal,
@@ -227,7 +227,7 @@ const ProjectDetails = () => {
     console.log('userck: ', userCK);
 
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/skillCrafter/skill-crafter/${userCK}/`);
+      const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/skill-crafter/${userCK}/`);
       setSkillCrafterDetails(response.data); // Store SkillCrafter details
       console.log('ck details: ', response.data);
       console.log('id: ', response.data.user);
@@ -268,7 +268,7 @@ const ProjectDetails = () => {
   // Function to fetch the user details (first name and last name) by user ID
   const fetchUserDetails = async (userId) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/accounts/users/${userId}/`);
+      const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/accounts/users/${userId}/`);
       setUserDetails(response.data); // Store user details (first name, last name)
       console.log('User details fetched: ', response.data);
     } catch (error) {
@@ -293,7 +293,7 @@ const ProjectDetails = () => {
   
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/skillCrafter/project-review/',
+        'https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-review/',
         {
           completed_project: projectId, // Project ID
           reviewer: user.sk,  // The skill seeker ID
@@ -339,7 +339,7 @@ const ProjectDetails = () => {
     // Check if the user already submitted a proposal
     const checkProposalStatus = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/skillCrafter/filtered-project-proposals/?project=${id}&proposed_by=${user.ck}`);
+        const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/filtered-project-proposals/?project=${id}&proposed_by=${user.ck}`);
         if (response.data && response.data.length > 0) {
           // If there's an existing proposal, mark it as submitted
           setIsProposalSubmitted(true);
@@ -369,7 +369,7 @@ useEffect(() => {
   // Check if the user has already submitted a review for this project
   const checkReviewStatus = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/skillCrafter/project-review/`, {
+      const response = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-review/`, {
         params: {
           completed_project: proposal.id,  // Use the project ID
           reviewer: user.sk, // The skill seeker ID (user.sk)

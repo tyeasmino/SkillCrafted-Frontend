@@ -88,7 +88,7 @@ const AddProject = () => {
          
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/projects/projectList/", {
+            const response = await fetch("https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -118,7 +118,7 @@ const AddProject = () => {
     useEffect( () => {
         const fetchCategories = async () => {
         try {
-            const res = await axios.get('http://127.0.0.1:8000/projects/categoryList/')
+            const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/categoryList/')
             setCategories(res.data)
         } catch (error) {
             console.error('Error fetching categories: ', error)

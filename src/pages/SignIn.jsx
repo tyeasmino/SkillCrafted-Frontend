@@ -33,8 +33,8 @@ const SignIn = () => {
         // console.log(formData) 
         try { 
             const res = await axios.post(
-                // "http://127.0.0.1:8000/auth/login/",
-            "http://127.0.0.1:8000/accounts/login/",
+                // "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/auth/login/",
+            "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/accounts/login/",
             formData,
             {
                 headers: {

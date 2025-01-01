@@ -38,7 +38,7 @@ const Dashboard = () => {
       if (user.sk) {
         const fetchProjects = async () => {
           try {
-            const res = await axios.get(`http://127.0.0.1:8000/projects/projectList/?skillSeeker=${user.sk}`, {
+            const res = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/?skillSeeker=${user.sk}`, {
               headers: { Authorization: `Token ${token}` },
             });
             setProjects(res.data);
@@ -52,7 +52,7 @@ const Dashboard = () => {
 
       const fetchCategories = async () => {
         try {
-          const categoryRes = await axios.get('http://127.0.0.1:8000/projects/categoryList/', {
+          const categoryRes = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/categoryList/', {
             headers: { Authorization: `Token ${token}` },
           });
           setCategories(categoryRes.data);
@@ -66,7 +66,7 @@ const Dashboard = () => {
       if (user.ck) {
         const fetchProposals = async () => {
           try {
-            const proposalRes = await axios.get(`http://127.0.0.1:8000/skillCrafter/filtered-project-proposals/?proposed_by=${user.ck}`, {
+            const proposalRes = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/filtered-project-proposals/?proposed_by=${user.ck}`, {
               headers: { Authorization: `Token ${token}` },
             })
             setProposals(proposalRes.data)
@@ -119,7 +119,7 @@ const Dashboard = () => {
   const handleDelete = async (projectId) => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.delete(`http://127.0.0.1:8000/projects/projectList/${projectId}/`, {
+      const res = await axios.delete(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/${projectId}/`, {
         headers: { Authorization: `Token ${token}` },
       });
       if (res.status === 204) {
@@ -179,7 +179,7 @@ const Dashboard = () => {
 
 
     try {
-      const response = await axios.put(`http://127.0.0.1:8000/projects/projectList/${selectedProject.id}/`,
+      const response = await axios.put(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/${selectedProject.id}/`,
         projectData,
         { headers: { Authorization: `Token ${token}` } }
       );
@@ -206,7 +206,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.patch(
-        `http://127.0.0.1:8000/skillCrafter/project-proposal/${proposalId}/`,
+        `https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-proposal/${proposalId}/`,
         { is_completed: progress },
         {
           headers: { Authorization: `Token ${token}` },
@@ -238,7 +238,7 @@ const Dashboard = () => {
       if (proposal.is_completed === '1') {
         const fetchReview = async () => {
           try {
-            const response = await fetch(`http://127.0.0.1:8000/skillCrafter/project-review/`);
+            const response = await fetch(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-review/`);
             const data = await response.json();
 
             // Find the review corresponding to the current proposal
@@ -264,7 +264,7 @@ const Dashboard = () => {
       if (proposal.is_completed === '1') {
         const fetchReview = async () => {
           try {
-            const response = await fetch(`http://127.0.0.1:8000/skillCrafter/project-review/`);
+            const response = await fetch(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/project-review/`);
             const data = await response.json();
             console.log(data);
 
