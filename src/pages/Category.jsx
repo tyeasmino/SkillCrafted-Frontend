@@ -21,7 +21,7 @@ const Category = () => {
       try {
         // Logging the categorySlug to verify the value
         console.log("Fetching projects for category:", categorySlug);
-        const res = await axios.get(`https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/projectList/?categorySlug=${categorySlug}`);
+        const res = await axios.get(`https://skillcrafted-backend.vercel.app/projects/projectList/?categorySlug=${categorySlug}`);
         setProjects(res.data);
         setFilteredProjects(res.data);  // Initially, display all projects
       } catch (error) {
@@ -37,7 +37,7 @@ const Category = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/categoryList/');
+        const res = await axios.get('https://skillcrafted-backend.vercel.app/projects/categoryList/');
         setCategories(res.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -50,7 +50,7 @@ const Category = () => {
   useEffect(() => {
     const fetchSkillSeekers = async () => {
       try {
-        const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/skill-seekers/');
+        const res = await axios.get('https://skillcrafted-backend.vercel.app/skillSeeker/skill-seekers/');
         const skillSeekerData = res.data.reduce((acc, skillSeeker) => {
           acc[skillSeeker.id] = skillSeeker.company_logo;
           return acc;

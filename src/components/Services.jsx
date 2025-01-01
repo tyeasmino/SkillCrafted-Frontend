@@ -12,7 +12,7 @@ const Services = () => {
   useEffect( () => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/projects/categoryList/')
+        const res = await axios.get('https://skillcrafted-backend.vercel.app/projects/categoryList/')
         setCategories(res.data)
       } catch (error) {
         console.error('Error fetching categories: ', error)

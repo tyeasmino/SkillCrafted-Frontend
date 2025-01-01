@@ -19,10 +19,10 @@ const ForgetPassword = () => {
     setError('');
     setSuccessMessage('');
 
-    // Send POST request using Axios - https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/auth/password_reset/ 
+    // Send POST request using Axios - https://skillcrafted-backend.vercel.app/auth/password_reset/ 
 
     try {
-      const response = await axios.post('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/auth/password/reset/', {
+      const response = await axios.post('https://skillcrafted-backend.vercel.app/auth/password/reset/', {
         email: email,
       });
 

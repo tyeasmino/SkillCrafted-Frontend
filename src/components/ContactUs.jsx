@@ -25,7 +25,7 @@ const ContactUs = () => {
 
     try { 
       const res = await axios.post(
-        "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/contact_us/",
+        "https://skillcrafted-backend.vercel.app/contact_us/",
         formData,
         {
           headers: {

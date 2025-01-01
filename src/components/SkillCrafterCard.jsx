@@ -20,7 +20,7 @@ const SkillCrafterCard = () => {
   useEffect(() => {
     // Fetch user data from the skillCrafter API
     axios
-      .get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillCrafter/skill-crafter/')
+      .get('https://skillcrafted-backend.vercel.app/skillCrafter/skill-crafter/')
       .then((response) => {
         setUserData(response.data); // Store the skill crafter data
       })
@@ -30,7 +30,7 @@ const SkillCrafterCard = () => {
 
     // Fetch specializations data from the specialization API
     axios
-      .get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/skillSeeker/specialization/')
+      .get('https://skillcrafted-backend.vercel.app/skillSeeker/specialization/')
       .then((response) => {
         setSpecializations(response.data); // Store the specializations data
       })
@@ -40,7 +40,7 @@ const SkillCrafterCard = () => {
 
     // Fetch all users from the users API
     axios
-      .get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/accounts/users/')
+      .get('https://skillcrafted-backend.vercel.app/accounts/users/')
       .then((response) => {
         setUsers(response.data); // Store the users data
       })

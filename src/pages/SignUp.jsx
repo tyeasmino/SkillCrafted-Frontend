@@ -33,7 +33,7 @@ const SignUp = () => {
 
         try { 
             const res = await axios.post(
-            "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/accounts/register/",
+            "https://skillcrafted-backend.vercel.app/accounts/register/",
             formData,
 
             {

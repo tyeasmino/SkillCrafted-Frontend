@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
 
   const fetchUserDetails = async (token) => {
     try {
-      const res = await axios.get('https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/accounts/user_details/', {
+      const res = await axios.get('https://skillcrafted-backend.vercel.app/accounts/user_details/', {
         headers: {
           'Authorization': `Token ${token}`,
         },
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     try {
       const res = await axios.post(
-        "https://skillcrafted-backend-hs0gg98gj-tyeasminos-projects.vercel.app/accounts/login/",
+        "https://skillcrafted-backend.vercel.app/accounts/login/",
         formData,
         {
           headers: {
