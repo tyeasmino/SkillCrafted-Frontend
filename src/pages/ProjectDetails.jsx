@@ -288,53 +288,41 @@ const ProjectDetails = () => {
   }, [proposals]); // Run when the proposals array is updated
 
 
-  const handleReviewSubmit = async (proposalId, rating, body, skillCrafterId) => {
+  const handleReviewSubmit = async (projectId, rating, body, skillCrafterId) => {
     const token = localStorage.getItem('token');
-
-    // Log the data being sent to ensure correctness
-    console.log('Submitting review with the following data:', {
-      completed_project: proposalId,
-      reviewer: user.sk, // Skill Seeker ID
-      skillCrafter: skillCrafterId, // Skill Crafter ID (who is being reviewed)
-      rating: rating,
-      body: body,
-    });
-
+  
     try {
-      // Sending the POST request to the updated API endpoint
       const response = await axios.post(
-        `http://127.0.0.1:8000/skillCrafter/project-review/`,
+        'http://127.0.0.1:8000/skillCrafter/project-review/',
         {
-          completed_project: proposalId,  // Proposal ID
-          reviewer: user.sk,  // Skill Seeker ID (user.sk)
-          skillCrafter: skillCrafterId,  // Skill Crafter ID (who is being reviewed)
-          rating: rating,  // Rating given by the Skill Seeker
+          completed_project: projectId, // Project ID
+          reviewer: user.sk,  // The skill seeker ID
+          skillCrafter: skillCrafterId,  // The skill crafter being reviewed
+          rating: rating,  // Rating value
           body: body,  // Review text
         },
         {
           headers: { Authorization: `Token ${token}` },
         }
       );
-
-      // Check for successful submission
+  
       if (response.status === 201) {
         alert('Review submitted successfully!');
-        // Optionally, update the state to reflect that the review was added
-        setProposals((prevProposals) =>
-          prevProposals.map((proposal) =>
-            proposal.id === proposalId ? { ...proposal, has_review: true } : proposal
-          )
-        );
+        // Update review status and data
+        setReviewSubmitted(true);
+        setSubmittedReview({
+          rating: response.data.rating,
+          body: response.data.body,
+        });
       } else {
         alert('Failed to submit review!');
       }
     } catch (error) {
-      // Handle errors if the request fails
       console.error('Error submitting review:', error);
       alert('Error submitting review!');
     }
   };
-
+  
 
 
 
@@ -366,6 +354,49 @@ const ProjectDetails = () => {
       checkProposalStatus(); // Check if the user has already submitted a proposal
     }
   }, [id, user]);
+
+
+
+
+
+
+
+
+  const [reviewSubmitted, setReviewSubmitted] = useState(false); // Track if the review is submitted
+const [submittedReview, setSubmittedReview] = useState({ rating: null, body: '' }); // Store the submitted review data
+
+useEffect(() => {
+  // Check if the user has already submitted a review for this project
+  const checkReviewStatus = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/skillCrafter/project-review/`, {
+        params: {
+          completed_project: proposal.id,  // Use the project ID
+          reviewer: user.sk, // The skill seeker ID (user.sk)
+        },
+      });
+
+      if (response.data && response.data.length > 0) {
+        setReviewSubmitted(true); // Review exists
+        setSubmittedReview({
+          rating: response.data[0].rating,
+          body: response.data[0].body,
+        }); // Set the review data
+      } else {
+        setReviewSubmitted(false); // No review submitted
+      }
+    } catch (error) {
+      console.error('Error checking review status:', error);
+    }
+  };
+
+  if (user && proposal.id) {
+    checkReviewStatus(); // Make the check when the user is logged in and project is available
+  }
+}, [user, proposal.id]); // Re-run when user or project changes
+
+
+
 
   // Check if the project deadline has passed
   const isDeadlinePassed = new Date(formData.deadline) < new Date();
@@ -847,70 +878,84 @@ const ProjectDetails = () => {
 
 
                               <div>
-                                {proposal.is_completed !== '2' ? (
-                                  <>
-                                    <p className="text-sm text-gray-700">
-                                      <strong>Completed? </strong>{proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
-                                    </p>
-                                    {proposal.is_completed === '1' && (
-                                      <div className="text-sm text-gray-700">
-                                        {proposal.is_completed === '1' && (
-                                          <div className="text-sm text-gray-700">
-                                            <form
-                                              className="mt-3 bg-white p-5 rounded-lg shadow-lg"
-                                              onSubmit={(e) => {
-                                                e.preventDefault();
-                                                const formData = new FormData(e.target);
-                                                const rating = formData.get('rating');
-                                                const body = formData.get('body');
-                                                handleReviewSubmit(project.id, rating, body, proposal.proposed_by);  // Pass proposed_by as skillCrafter ID
-                                              }}
-                                            >
-                                              <h3 className="text-xl font-semibold mb-3 text-gray-800">Give Ratings</h3>
-                                              <div className="mb-4">
-                                                <label className="block text-sm font-medium text-gray-700">Ratings</label>
-                                                <select
-                                                  name="rating"
-                                                  required
-                                                  className="border border-gray-300 rounded-md p-2 mt-1 w-full"
-                                                >
-                                                  <option value="">Select Rating</option>
-                                                  {STAR_CHOICES.map((choice, index) => (
-                                                    <option key={index} value={choice.value}>{choice.label}</option>
-                                                  ))}
-                                                </select>
-                                              </div>
-                                              <div className="mb-4">
-                                                <label className="block text-sm font-medium text-gray-700">Review</label>
-                                                <textarea
-                                                  name="body"
-                                                  rows="3"
-                                                  placeholder="Write your review here..."
-                                                  required
-                                                  className="border border-gray-300 rounded-md p-2 mt-1 w-full"
-                                                ></textarea>
-                                              </div>
-                                              <button
-                                                type="submit"
-                                                className="bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600 w-full mt-3 transition-colors"
-                                              >
-                                                Submit
-                                              </button>
-                                              <small className="text-xs text-gray-500 mt-2 block text-center">
-                                                Give a rating to your skill crafter
-                                              </small>
-                                            </form>
-                                          </div>
-                                        )}
+  {proposal.is_completed !== '2' ? (
+    <>
+      <p className="text-sm text-gray-700">
+        <strong>Completed? </strong>
+        {proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
+      </p>
 
+      {/* If proposal is completed and no review has been submitted */}
+      {proposal.is_completed === '1' && !reviewSubmitted && (
+        <div className="text-sm text-gray-700">
+          <form
+            className="mt-3 bg-white p-5 rounded-lg shadow-lg"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const rating = formData.get('rating');
+              const body = formData.get('body');
+              handleReviewSubmit(project.id, rating, body, proposal.proposed_by);
+            }}
+          >
+            <h3 className="text-xl font-semibold mb-3 text-gray-800">Give Ratings</h3>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Ratings</label>
+              <select
+                name="rating"
+                required
+                className="border border-gray-300 rounded-md p-2 mt-1 w-full"
+              >
+                <option value="">Select Rating</option>
+                {STAR_CHOICES.map((choice, index) => (
+                  <option key={index} value={choice.value}>
+                    {choice.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Review</label>
+              <textarea
+                name="body"
+                rows="3"
+                placeholder="Write your review here..."
+                required
+                className="border border-gray-300 rounded-md p-2 mt-1 w-full"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600 w-full mt-3 transition-colors"
+            >
+              Submit
+            </button>
+            <small className="text-xs text-gray-500 mt-2 block text-center">
+              Give a rating to your skill crafter
+            </small>
+          </form>
+        </div>
+      )}
 
+      {/* If a review is already submitted */}
+      {reviewSubmitted && (
+        <div className="mt-5 p-4 bg-gray-100 rounded-md shadow-md">
+          <h4 className="text-lg font-semibold">Your Review</h4>
+          <div className="text-sm text-gray-700">
+            <p><strong>Rating:</strong> {submittedReview.rating} Stars</p>
+            <p><strong>Review:</strong> {submittedReview.body}</p>
+          </div>
+        </div>
+      )}
+    </>
+  ) : (
+    <>
+      <strong>Completed? </strong>
+      {proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
+    </>
+  )}
+</div>
 
-                                      </div>
-                                    )}
-                                  </>
-                                ) : (<> <strong>Completed? </strong>{proposal.is_completed === '1' ? 'YES' : 'Status is Pending'} </>)}
-
-                              </div>
 
                               <div className="flex justify-between text-[20px] my-3">
                                 <span className="bg-green-500 text-white text-xs font-bold py-1 px-3 rounded-full">
@@ -957,7 +1002,6 @@ const ProjectDetails = () => {
                                   </div>
 
                                   <div className='flex flex-col gap-0'>
-                                    <h3 className='text-xl'> Full Name </h3>
                                     <div className='text-sm font-semibold'>
                                       {
                                         skillCrafterDetails.specialization && skillCrafterDetails.specialization.length > 0 ? (
