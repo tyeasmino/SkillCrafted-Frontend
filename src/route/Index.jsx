@@ -18,6 +18,7 @@ import Category from '../pages/Category';
 import ProjectDetails from '../pages/ProjectDetails';
 import Contact from '../pages/Contact';
 import ServicesPage from '../pages/ServicesPage';
+import ActivationPage from '../pages/ActivationPage';
  
 
 
@@ -39,6 +40,7 @@ const Index = () => {
               <Route path="/projects" element={<Projects/>} /> 
               <Route path="/project/:id" element={<ProjectDetails/>} />  
               <Route path="/category/:categorySlug" element={<Category />} />
+              <Route path="/accounts/active/:uid/:token" element={<ActivationPage />} />
             {/* </Route> */}
 
  
