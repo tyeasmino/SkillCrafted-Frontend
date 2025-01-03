@@ -70,8 +70,7 @@ const Home = () => {
         <div className="flex gap-5 md:gap-10 justify-center flex-wrap p-5 md:px-10">
           <Card />
           <Card />
-          <Card />
-          <Card />
+          <Card /> 
         </div>
         <BaseButton btnText="View all popular services" />
       </div>
@@ -81,7 +80,7 @@ const Home = () => {
       <div className=''>
         <div className='flex flex-col gap-5 text-center my-10'>
           <h2 className='font-bold text-[#141A34] text-2xl md:text-4xl'>
-            Explore <span className='text-[#425BF5]'> Our Services </span> Categories
+            Explore <span className='text-[#425BF5]'> Our All Services </span> Categories
           </h2>
         </div>
 
