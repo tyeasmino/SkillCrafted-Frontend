@@ -9,10 +9,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Services from '../components/Services'
 import CardServices from '../components/CardServices'
+import ProjectCard from '../components/ProjectCard'
 import ContactUs from '../components/ContactUs'
 import FAQ from '../components/FAQ'
 import SkillCrafterCard from '../components/SkillCrafterCard'
-import ProjectCard from '../components/projectCard'
+
 import { Link } from 'react-router'
 
 const Home = () => {
