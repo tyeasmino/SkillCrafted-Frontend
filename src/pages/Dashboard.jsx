@@ -294,9 +294,9 @@ const Dashboard = () => {
       {(user && user.sk) ? (
         <>
           <div>
-            <h2 className="text-5xl font-semibold flex gap-5 items-center">
+            <h2 className="text-2xl md:text-5xl ml-10 md:ml-0 font-semibold flex gap-3 md:gap-5 items-center">
               Projects
-              <Link className="text-3xl" to="/add-project">
+              <Link className="text-xl md:text-3xl" to="/add-project">
                 <BiMessageSquareAdd />
               </Link>
             </h2>
@@ -308,8 +308,8 @@ const Dashboard = () => {
                 return projectDeadline >= today;
               }).length > 0 && (
                   <div>
-                    <h3 className="text-3xl font-semibold mt-5">Active Projects</h3>
-                    <section className="flex flex-wrap gap-5 my-5">
+                    <h3 className="text-xl md:text-3xl text-center md:text-start font-semibold mt-5">Active Projects</h3>
+                    <section className="flex flex-wrap justify-center md:justify-start  gap-5 my-5">
                       {projects.filter(project => {
                         const projectDeadline = new Date(project.deadline);
                         const today = new Date();
@@ -369,8 +369,8 @@ const Dashboard = () => {
                 return projectDeadline < today;
               }).length > 0 && (
                   <div>
-                    <h3 className="text-3xl font-semibold mt-5">Deadline Over</h3>
-                    <section className="flex flex-wrap gap-5 my-5">
+                    <h3 className="text-xl md:text-3xl text-center  md:text-start font-semibold mt-5">Deadline Over</h3>
+                    <section className="flex flex-wrap justify-center md:justify-start gap-5 my-">
                       {projects.filter(project => {
                         const projectDeadline = new Date(project.deadline);
                         const today = new Date();
@@ -427,10 +427,10 @@ const Dashboard = () => {
 
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-              <div className="bg-white p-6 rounded-md w-[400px] md:w-[1000px] md:max-h-[800px]">
-                <h3 className="text-2xl mb-4">Edit Project</h3>
+              <div className="bg-white  scroll-smooth     p-6 rounded-md w-[300px]   overflow-hidden   md:w-[1000px] md:max-h-[800px]">
+                <h3 className="text-xl md:text-2xl mb-4">Edit Project</h3>
                 <form onSubmit={handleUpdateProject}>
-                  <div className="mb-4">
+                  <div className="mb-2 md:mb-4">
                     <label className="block text-sm font-medium text-gray-700">Category</label>
                     <select
                       name="category"
@@ -452,7 +452,7 @@ const Dashboard = () => {
                     </select>
                   </div>
 
-                  <div className="mb-4">
+                  <div className="mb-2 md:mb-4">
                     <label className="block text-sm font-medium text-gray-700">Title</label>
                     <input
                       type="text"
@@ -464,11 +464,10 @@ const Dashboard = () => {
                     />
                   </div>
 
-                  <div className='md: flex gap-5'>
-
-                    <div className="left md:w-1/2">
+                  <div className='md: flex flex-col md:flex-row md:gap-5'>
+                    <div className="left w-full md:w-1/2">
                       <div className='md:flex gap-5'>
-                        <div className="mb-4 w-full md:w-1/2">
+                        <div className="mb-2 md:mb-4 w-full md:w-1/2">
                           <label className="block text-sm font-medium text-gray-700">Budget</label>
                           <input
                             type="text"
@@ -479,7 +478,7 @@ const Dashboard = () => {
                             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
                           />
                         </div>
-                        <div className="mb-4 w-full md:w-1/2">
+                        <div className="mb-2 md:mb-4 w-full md:w-1/2">
                           <label className="block text-sm font-medium text-gray-700">Deadline</label>
                           <input
                             type="date"
@@ -492,7 +491,7 @@ const Dashboard = () => {
                         </div>
                       </div>
 
-                      <div className="mb-4">
+                      <div className="mb-2 md:mb-4">
                         <label className="block text-sm font-medium text-gray-700">Requirements</label>
                         <textarea
                           rows={3}
@@ -503,7 +502,7 @@ const Dashboard = () => {
                         />
                       </div>
 
-                      <div className="mb-4">
+                      <div className="mb-2 md:mb-4">
                         <label className="block text-sm font-medium text-gray-700">Description</label>
                         <textarea
                           rows={3}
@@ -516,8 +515,8 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    <div className="right md:w-1/2">
-                      <div className="mb-4">
+                    <div className="right w-full md:w-1/2">
+                      <div className="mb-2 md:mb-4">
                         <label className="text-sm font-medium text-gray-700 flex items-center justify-between">
                           Attachment
                         </label>
@@ -527,7 +526,10 @@ const Dashboard = () => {
                           <p className="text-xs text-[#425BF5] mt-1">New Image Uploaded</p>
                         )}
                         {formData.anyAttachment && !(formData.anyAttachment instanceof File) && (
-                          <img src={formData.anyAttachment} alt="Attachment Preview" className="w-full max-h-[300px] mt-2 rounded-xl" />
+                          <div>
+                            <img src={formData.anyAttachment} alt="Attachment Preview" className="w-full hidden md:block max-h-[300px] mt-2 rounded-xl" />
+                            <p className='text-[12px]'> Attachement Preview is disable for mobile view </p>  
+                          </div>
                         )}
                       </div>
                     </div>
@@ -676,8 +678,8 @@ const Dashboard = () => {
             :
             <>
               <div className=''>
-                <h2 className='max-w-[700px] m-auto text-center font-bold text-5xl  '>No Proposal Submitted Yet</h2>
-                <img className='max-w-[500px] m-auto  ' src={noproposal} alt="" />
+                <h2 className='max-w-[700px] m-auto text-center font-bold text-xl md:text-5xl  '>No Proposal Submitted Yet</h2>
+                <img className='max-w-[250px] m-auto  ' src={noproposal} alt="" />
               </div>
             </>}
         </>

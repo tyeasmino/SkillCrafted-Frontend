@@ -151,9 +151,7 @@ const ProjectDetails = () => {
 
 
   const [specializations, setSpecializations] = useState([]);
-  // const [skillCrafterDetails, setSkillCrafterDetails] = useState({
-  //   specialization: "14" // Example: This could be a string of concatenated IDs like "14" (for 1 and 4)
-  // });
+
 
   useEffect(() => {
     const fetchSpecializations = async () => {
@@ -191,32 +189,49 @@ const ProjectDetails = () => {
   // Handle proposal submission (redirect if not logged in)
   const handleSubmitProposal = (e) => {
     e.preventDefault();
+
+    // Ensure proposal field is not empty
+    if (!proposal.proposal) {
+      alert("Please provide a proposal description.");
+      return;
+    }
+
+    // Ensure user is logged in
     if (!user) {  // If user is not logged in
-      // Save the current proposal to localStorage with the project id
-      localStorage.setItem(`proposal_${id}`, proposal.proposal);
-      // Redirect to login page
-      navigate('/login');
+      localStorage.setItem(`proposal_${id}`, proposal.proposal); // Save proposal to localStorage
+      navigate('/login'); // Redirect to login page
+      return;
     } else if (!user.ck) {
       alert('You must be a Skill Crafter to submit a proposal!');
-    } else {
-      // Continue with proposal submission
-      console.log('Submitting proposal...', proposal);
-      axios.post(`https://skillcrafted-backend.vercel.app/skillCrafter/project-proposal/`, {
-        project: id,
-        proposed_by: user.ck,
-        proposal: proposal.proposal,
-        is_proposal_accepted: false,
-        is_completed: false,
-      }).then((response) => {
+      return;
+    }
+
+    // Prepare the proposal data to be submitted
+    const proposalData = {
+      proposal: proposal.proposal,       // The proposal text
+      is_proposal_accepted: false,        // Initial status of proposal
+      is_completed: '2',                  // Set this to '2' (Not Started) based on your PROGRESS_CHOICES
+      project: id,                        // The project ID from the URL
+      proposed_by: user.ck,               // The user ID (Skill Crafter)
+    };
+
+    console.log("Proposal Data:", proposalData); // Log to check before submission
+
+    // Make the POST request to submit the proposal
+    axios.post('https://skillcrafted-backend.vercel.app/skillCrafter/project-proposal/', proposalData)
+      .then((response) => {
         console.log('Proposal submitted successfully:', response.data);
         localStorage.removeItem(`proposal_${id}`); // Clear proposal data after submission
-        setIsProposalSubmitted(true); // Mark the proposal as submitted
+        setIsProposalSubmitted(true);
         alert('Your proposal has been submitted!');
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.error('Error submitting proposal:', error);
+        alert('There was an error submitting your proposal.');
       });
-    }
   };
+
+
 
 
   // Define state for skillCrafterDetails
@@ -290,7 +305,7 @@ const ProjectDetails = () => {
 
   const handleReviewSubmit = async (projectId, rating, body, skillCrafterId) => {
     const token = localStorage.getItem('token');
-  
+
     try {
       const response = await axios.post(
         'https://skillcrafted-backend.vercel.app/skillCrafter/project-review/',
@@ -305,7 +320,7 @@ const ProjectDetails = () => {
           headers: { Authorization: `Token ${token}` },
         }
       );
-  
+
       if (response.status === 201) {
         alert('Review submitted successfully!');
         // Update review status and data
@@ -322,7 +337,7 @@ const ProjectDetails = () => {
       alert('Error submitting review!');
     }
   };
-  
+
 
 
 
@@ -363,37 +378,37 @@ const ProjectDetails = () => {
 
 
   const [reviewSubmitted, setReviewSubmitted] = useState(false); // Track if the review is submitted
-const [submittedReview, setSubmittedReview] = useState({ rating: null, body: '' }); // Store the submitted review data
+  const [submittedReview, setSubmittedReview] = useState({ rating: null, body: '' }); // Store the submitted review data
 
-useEffect(() => {
-  // Check if the user has already submitted a review for this project
-  const checkReviewStatus = async () => {
-    try {
-      const response = await axios.get(`https://skillcrafted-backend.vercel.app/skillCrafter/project-review/`, {
-        params: {
-          completed_project: proposal.id,  // Use the project ID
-          reviewer: user.sk, // The skill seeker ID (user.sk)
-        },
-      });
+  useEffect(() => {
+    // Check if the user has already submitted a review for this project
+    const checkReviewStatus = async () => {
+      try {
+        const response = await axios.get(`https://skillcrafted-backend.vercel.app/skillCrafter/project-review/`, {
+          params: {
+            completed_project: proposal.id,  // Use the project ID
+            reviewer: user.sk, // The skill seeker ID (user.sk)
+          },
+        });
 
-      if (response.data && response.data.length > 0) {
-        setReviewSubmitted(true); // Review exists
-        setSubmittedReview({
-          rating: response.data[0].rating,
-          body: response.data[0].body,
-        }); // Set the review data
-      } else {
-        setReviewSubmitted(false); // No review submitted
+        if (response.data && response.data.length > 0) {
+          setReviewSubmitted(true); // Review exists
+          setSubmittedReview({
+            rating: response.data[0].rating,
+            body: response.data[0].body,
+          }); // Set the review data
+        } else {
+          setReviewSubmitted(false); // No review submitted
+        }
+      } catch (error) {
+        console.error('Error checking review status:', error);
       }
-    } catch (error) {
-      console.error('Error checking review status:', error);
-    }
-  };
+    };
 
-  if (user && proposal.id) {
-    checkReviewStatus(); // Make the check when the user is logged in and project is available
-  }
-}, [user, proposal.id]); // Re-run when user or project changes
+    if (user && proposal.id) {
+      checkReviewStatus(); // Make the check when the user is logged in and project is available
+    }
+  }, [user, proposal.id]); // Re-run when user or project changes
 
 
 
@@ -878,83 +893,83 @@ useEffect(() => {
 
 
                               <div>
-  {proposal.is_completed !== '2' ? (
-    <>
-      <p className="text-sm text-gray-700">
-        <strong>Completed? </strong>
-        {proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
-      </p>
+                                {proposal.is_completed !== '2' ? (
+                                  <>
+                                    <p className="text-sm text-gray-700">
+                                      <strong>Completed? </strong>
+                                      {proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
+                                    </p>
 
-      {/* If proposal is completed and no review has been submitted */}
-      {proposal.is_completed === '1' && !reviewSubmitted && (
-        <div className="text-sm text-gray-700">
-          <form
-            className="mt-3 bg-white p-5 rounded-lg shadow-lg"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.target);
-              const rating = formData.get('rating');
-              const body = formData.get('body');
-              handleReviewSubmit(project.id, rating, body, proposal.proposed_by);
-            }}
-          >
-            <h3 className="text-xl font-semibold mb-3 text-gray-800">Give Ratings</h3>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">Ratings</label>
-              <select
-                name="rating"
-                required
-                className="border border-gray-300 rounded-md p-2 mt-1 w-full"
-              >
-                <option value="">Select Rating</option>
-                {STAR_CHOICES.map((choice, index) => (
-                  <option key={index} value={choice.value}>
-                    {choice.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">Review</label>
-              <textarea
-                name="body"
-                rows="3"
-                placeholder="Write your review here..."
-                required
-                className="border border-gray-300 rounded-md p-2 mt-1 w-full"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600 w-full mt-3 transition-colors"
-            >
-              Submit
-            </button>
-            <small className="text-xs text-gray-500 mt-2 block text-center">
-              Give a rating to your skill crafter
-            </small>
-          </form>
-        </div>
-      )}
+                                    {/* If proposal is completed and no review has been submitted */}
+                                    {proposal.is_completed === '1' && !reviewSubmitted && (
+                                      <div className="text-sm text-gray-700">
+                                        <form
+                                          className="mt-3 bg-white p-5 rounded-lg shadow-lg"
+                                          onSubmit={(e) => {
+                                            e.preventDefault();
+                                            const formData = new FormData(e.target);
+                                            const rating = formData.get('rating');
+                                            const body = formData.get('body');
+                                            handleReviewSubmit(project.id, rating, body, proposal.proposed_by);
+                                          }}
+                                        >
+                                          <h3 className="text-xl font-semibold mb-3 text-gray-800">Give Ratings</h3>
+                                          <div className="mb-4">
+                                            <label className="block text-sm font-medium text-gray-700">Ratings</label>
+                                            <select
+                                              name="rating"
+                                              required
+                                              className="border border-gray-300 rounded-md p-2 mt-1 w-full"
+                                            >
+                                              <option value="">Select Rating</option>
+                                              {STAR_CHOICES.map((choice, index) => (
+                                                <option key={index} value={choice.value}>
+                                                  {choice.label}
+                                                </option>
+                                              ))}
+                                            </select>
+                                          </div>
+                                          <div className="mb-4">
+                                            <label className="block text-sm font-medium text-gray-700">Review</label>
+                                            <textarea
+                                              name="body"
+                                              rows="3"
+                                              placeholder="Write your review here..."
+                                              required
+                                              className="border border-gray-300 rounded-md p-2 mt-1 w-full"
+                                            ></textarea>
+                                          </div>
+                                          <button
+                                            type="submit"
+                                            className="bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600 w-full mt-3 transition-colors"
+                                          >
+                                            Submit
+                                          </button>
+                                          <small className="text-xs text-gray-500 mt-2 block text-center">
+                                            Give a rating to your skill crafter
+                                          </small>
+                                        </form>
+                                      </div>
+                                    )}
 
-      {/* If a review is already submitted */}
-      {reviewSubmitted && (
-        <div className="mt-5 p-4 bg-gray-100 rounded-md shadow-md">
-          <h4 className="text-lg font-semibold">Your Review</h4>
-          <div className="text-sm text-gray-700">
-            <p><strong>Rating:</strong> {submittedReview.rating} Stars</p>
-            <p><strong>Review:</strong> {submittedReview.body}</p>
-          </div>
-        </div>
-      )}
-    </>
-  ) : (
-    <>
-      <strong>Completed? </strong>
-      {proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
-    </>
-  )}
-</div>
+                                    {/* If a review is already submitted */}
+                                    {reviewSubmitted && (
+                                      <div className="mt-5 p-4 bg-gray-100 rounded-md shadow-md">
+                                        <h4 className="text-lg font-semibold">Your Review</h4>
+                                        <div className="text-sm text-gray-700">
+                                          <p><strong>Rating:</strong> {submittedReview.rating} Stars</p>
+                                          <p><strong>Review:</strong> {submittedReview.body}</p>
+                                        </div>
+                                      </div>
+                                    )}
+                                  </>
+                                ) : (
+                                  <>
+                                    <strong>Completed? </strong>
+                                    {proposal.is_completed === '1' ? 'YES' : 'Status is Pending'}
+                                  </>
+                                )}
+                              </div>
 
 
                               <div className="flex justify-between text-[20px] my-3">
