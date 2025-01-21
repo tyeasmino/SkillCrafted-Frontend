@@ -1070,38 +1070,49 @@ const ProjectDetails = () => {
                     {proposals.length === 0 ? (
                       <p>No proposals available.</p>
                     ) : (
-                      <form onSubmit={handleProposalSubmission}>
-                        {proposals
-                          .filter((proposal) => !proposal.is_proposal_accepted) // Only show unaccepted proposals
-                          .map((proposal, index) => (
-                            <div key={index} className="bg-white p-4 shadow rounded-md my-2">
-                              <h4 className="text-xl font-bold">Proposal by {proposal.proposed_by}</h4>
-                              <p>{proposal.proposal}</p>
-                              <p>Status: {proposal.is_proposal_accepted ? "Accepted" : "Pending"}</p>
-                              <div className="flex justify-between">
-                                <span className="font-semibold">Do you like this proposal?</span>
-                                <div>
-                                  {/* Radio button to accept the proposal */}
-                                  <input
-                                    type="radio"
-                                    required
-                                    name="is_accepted"
-                                    value={proposal.id}
-                                    checked={selectedProposal?.id === proposal.id && selectedProposal.is_proposal_accepted}
-                                    onChange={(e) => handleProposalSelection(e, proposal)} // Set selected proposal and acceptance status
-                                  />{" "}
-                                  Yes
+                      <>
+                        <form onSubmit={handleProposalSubmission}>
+                          {proposals
+                            .filter((proposal) => !proposal.is_proposal_accepted) // Only show unaccepted proposals
+                            .map((proposal, index) => (
+                              <div key={index} className="bg-white p-4 shadow rounded-md my-2">
+                                <h4 className="text-xl flex justify-between font-bold">Proposal by {proposal.proposed_by} 
+                                <span
+                            className="text-blue-500"
+                            onClick={() => handleViewDetails(proposal.id)} // Open modal
+                          >
+                            <TbEyeCheck />
+                          </span>
+                                </h4>
+                                <p>{proposal.proposal}</p>
+                                <p>Status: {proposal.is_proposal_accepted ? "Accepted" : "Pending"}</p>
+                                <div className="flex justify-between">
+                                  <span className="font-semibold">Do you like this proposal?</span>
+                                  <div>
+                                    {/* Radio button to accept the proposal */}
+                                    <input
+                                      type="radio"
+                                      required
+                                      name="is_accepted"
+                                      value={proposal.id}
+                                      checked={selectedProposal?.id === proposal.id && selectedProposal.is_proposal_accepted}
+                                      onChange={(e) => handleProposalSelection(e, proposal)} // Set selected proposal and acceptance status
+                                    />{" "}
+                                    Yes
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
-                        <button
-                          type="submit"
-                          className="text-[#e8e8e8] bg-[#425BF5] w-fit text-center px-5 py-2 rounded-md"
-                        >
-                          Update Status
-                        </button>
-                      </form>
+                            ))}
+                          <button
+                            type="submit"
+                            className="text-[#e8e8e8] bg-[#425BF5] w-fit text-center px-5 py-2 rounded-md"
+                          >
+                            Update Status
+                          </button>
+                          
+                        </form>
+
+                      </>
                     )}
                   </div>
                 )}
