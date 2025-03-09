@@ -423,7 +423,7 @@ const ProjectDetails = () => {
   return (
     <section className="container flex flex-col md:flex-row gap-10 mx-auto p-6">
       {/* Project Details Section */}
-      <div className="p-6 rounded-md w-full md:w-3/5 md:max-h-[800px] shadow-lg shadow-gray-100">
+      <div className="p-6 rounded-md w-full md:w-3/5 md:max-h-[800px] shadow-lg shadow-gray-400">
         <h3 className="text-2xl mb-4">Project Details</h3>
 
         {/* Category */}
@@ -454,13 +454,13 @@ const ProjectDetails = () => {
         <div>
           <div className="mb-4">
             <p className="block text-sm font-medium text-[#626677]">
-              Budget: <span className="text-black">{formData.budget} Taka</span>
+              Budget: <span className="text-black dark:text-white">{formData.budget} Taka</span>
             </p>
           </div>
           <div className="mb-4">
             <p className="block text-sm font-medium text-[#626677]">
               Deadline:
-              <span className={new Date(formData.deadline) < new Date() ? 'text-red-500' : 'text-black'}> {formData.deadline} </span>
+              <span className={new Date(formData.deadline) < new Date() ? 'text-red-500' : 'text-black dark:text-white'}> {formData.deadline} </span>
 
 
             </p>
@@ -480,7 +480,7 @@ const ProjectDetails = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-2/5 rounded-md flex flex-col gap-8 p-5 shadow-md shadow-gray-100">
+      <div className="w-full md:w-2/5 rounded-md flex flex-col gap-8 p-5 shadow-md shadow-gray-400">
         {/* Conditionally Render Company Details Section */}
         {!user || (user && !user.sk) ? (
           <div>
