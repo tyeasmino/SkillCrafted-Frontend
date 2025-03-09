@@ -935,7 +935,7 @@ const ProjectDetails = () => {
                                               rows="3"
                                               placeholder="Write your review here..."
                                               required
-                                              className="border border-gray-300 darK:text-gray-100 rounded-md p-2 mt-1 w-full"
+                                              className="border border-gray-300 dark:text-gray-100 rounded-md p-2 mt-1 w-full"
                                             ></textarea>
                                           </div>
                                           <button
