@@ -381,7 +381,7 @@ const Dashboard = () => {
                         );
                         return (
                           <section key={project.id}>
-                            <div className="md:w-[250px] shadow-lg rounded-md p-5">
+                            <div className="min-w-[310px] max-w-[310px] md:w-[250px] shadow-lg rounded-md p-5">
                               <div className="top py-2">
                                 <h6 className="text-[12px] text-[#626677] flex justify-between items-center">
                                   {projectCategory ? projectCategory.name : 'N/A'}
