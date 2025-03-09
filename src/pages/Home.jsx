@@ -156,7 +156,7 @@ const Home = () => {
       </div>
 
       {/* Services You Might Like */}
-      <div className='bg-[#F4F5F7] mt-10 py-10'>
+      <div className='bg-[#828385b4] mt-10 py-10'>
         <SectionHeading title="Services You" highlight="Might Like" description="Explore services you might like and find your next project" />
 
         <div className="hidden md:flex gap-5 md:gap-10 justify-center flex-wrap p-5 md:px-10">
@@ -208,7 +208,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className='md:px-40'>
+        <div className='px-20 md:px-40'>
           <FAQ />
 
         </div>
