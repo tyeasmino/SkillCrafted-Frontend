@@ -44,7 +44,7 @@ const ForgetPassword = () => {
       <div className="flex flex-col-reverse md:flex-row items-center justify-between p-5 md:py-10 md:px-48">
         <div className="md:w-1/2 p-3 mt-5 md:mt-0 md:p-0 relative">
           <div className="max-w-lg mx-auto my-5">
-            <h2 className="text-3xl font-semibold text-[#141A34]">Forgot your password?</h2>
+            <h2 className="text-3xl font-semibold text-[#141A34] dark:text-white">Forgot your password?</h2>
             <p className="text-sm text-[#626677]"> Don't worry, happens to all of us. Enter your email below to recover your password </p>
           </div>
 

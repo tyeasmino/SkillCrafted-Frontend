@@ -90,13 +90,13 @@ const Category = () => {
         <h2 className='font-bold text-2xl'>Most Popular Projects in {categorySlug} category </h2> 
 
         <div className='flex gap-5 items-center'>
-          <span className='rounded-lg text-[#141A34] text-sm font-bold border-2 border-[#141A34] py-1 px-2'> Total Project: {filteredProjects.length} </span>      
+          <span className='rounded-lg text-[#141A34] dark:text-white text-sm font-bold border-2 border-[#141A34] py-1 px-2'> Total Project: {filteredProjects.length} </span>      
         </div>
       </div>
 
       {/* Budget Filter Section */}
       <div className="border-black px-10 flex flex-col gap-2 md:fixed top-30 left-0">
-        <div className='text-[#141A34] text-[14px] py-1 px-2'> 
+        <div className='text-[#141A34] dark:text-white text-[14px] py-1 px-2'> 
           Filter by Budget
           <form className='mt-3' onSubmit={handleSubmit}>
             <div className="relative z-0 w-full mb-5 group">
@@ -133,7 +133,7 @@ const Category = () => {
                 Maximum Budget
               </label>
             </div>
-            <button className='rounded mt-2 mb-10 text-[#141A34] text-[14px] font-bold border-2 border-[#141A34]  px-2'> Filter Projects </button>
+            <button className='rounded mt-2 mb-10 text-[#141A34] dark:text-white text-[14px] font-bold border-2 border-[#141A34]  px-2'> Filter Projects </button>
           </form>
         </div>
       </div>

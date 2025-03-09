@@ -15,7 +15,7 @@ const Card = () => {
             </div>
             <div className="flex flex-col gap-1 md:gap-3">
                 <h6 className='text-sm text-[#626677]'>Writing and Translation</h6>
-                <h2 className='text-[#141A34] font-bold md:text-xl '>Professional Blog Writing</h2>
+                <h2 className='text-[#141A34] dark:text-white  font-bold md:text-xl '>Professional Blog Writing</h2>
                 <div className='flex items-center gap-5'>
                     <div className="flex items-center gap-1">
                     <FaStar />

@@ -79,7 +79,7 @@ const Home = () => {
       {/* Explore Our Services Categories */}
       <div className=''>
         <div className='flex flex-col gap-5 text-center my-10'>
-          <h2 className='font-bold text-[#141A34] text-2xl md:text-4xl'>
+          <h2 className='font-bold text-[#141A34] dark:text-white text-2xl md:text-4xl'>
             Explore <span className='text-[#425BF5]'> Our All Services </span> Categories
           </h2>
         </div>
@@ -94,7 +94,7 @@ const Home = () => {
       {/* Check out our latest featrued projects and find the perfect one for your skills and interest! */}
       <div className=''>
         <div className='max-w-screen-md m-auto flex flex-col gap-5 text-center my-10 '>
-          <h2 className='font-bold text-[#141A34] text-md md:text-3xl px-5 md:px-0'>
+          <h2 className='font-bold text-[#141A34] dark:text-white text-md md:text-3xl px-5 md:px-0'>
             Check out our <span className='text-[#425BF5]'> latest featrued projects </span> and find <span className='text-[#425BF5]'> the perfect one for your skills </span> and interests!
           </h2>
         </div>
@@ -118,7 +118,7 @@ const Home = () => {
         <div className='p-3 md:p-10 z-10 relative '>
           <div className='max-w-screen-md m-auto'>
             <div className='flex flex-col gap-5 text-center my-10'>
-              <h2 className='font-bold text-[#141A34] text-md md:text-4xl'>
+              <h2 className='font-bold text-[#141A34] dark:text-white text-md md:text-4xl'>
                 We're dedicated to your success. Join our community today and
                 <span className='text-[#425BF5]  '> discover the power of freelance talent and quality services </span>
               </h2>
@@ -142,7 +142,7 @@ const Home = () => {
       {/* Dicover our rising star freelancers and work with the best talent on skillCrafted */}
       <div className=''>
         <div className='max-w-screen-md m-auto flex flex-col gap-5 text-center my-10'>
-          <h2 className='font-bold text-[#141A34] text-md md:text-4xl'>
+          <h2 className='font-bold text-[#141A34] dark:text-white text-md md:text-4xl'>
             Dicover our <span className='text-[#425BF5]'> rising star freelancers </span> and work with <span className='text-[#425BF5]'> the best talent </span> on skillCrafted
           </h2>
         </div>
@@ -202,7 +202,7 @@ const Home = () => {
       <div>
         <div className='m-auto md:px-40 mt-10'>
           <div className='flex flex-col gap-5 text-center md:py-5'>
-            <h2 className='font-bold text-[#141A34] text-xl md:text-4xl'>
+            <h2 className='font-bold text-[#141A34] dark:text-white text-xl md:text-4xl'>
               <span className='text-[#425BF5] '> Frequently </span> Asked Questions
             </h2>
           </div>

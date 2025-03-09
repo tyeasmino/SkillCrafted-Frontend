@@ -94,7 +94,7 @@ const ProjectCard = ({ limit }) => {
         <section className="flex flex-wrap justify-left gap-2 my-5 ">
           { limit === 5 ? <></> : 
             <div className='border-black px-10 flex flex-col gap-2 md:fixed top-30 left-0'>
-              <div className='text-[#141A34] text-[14px] py-1 px-2'> 
+              <div className='text-[#141A34] dark:text-white text-[14px] py-1 px-2'> 
                 Budget
                 <form className='mt-3' onSubmit={handleSubmit}>
                   <div className="relative z-0 w-full mb-5 group">
@@ -131,7 +131,7 @@ const ProjectCard = ({ limit }) => {
                       Maximum Budget
                     </label>
                   </div>
-                  <button className='rounded mt-2 mb-10 text-[#141A34] text-[14px] font-bold border-2 border-[#141A34]  px-2'> Filter Projects </button>
+                  <button className='rounded mt-2 mb-10 text-[#425BF5] text-[14px] font-bold border-2 border-[#425BF5]  px-2'> Filter Projects </button>
                 </form>
               </div>
             </div> 

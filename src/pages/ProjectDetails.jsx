@@ -461,8 +461,6 @@ const ProjectDetails = () => {
             <p className="block text-sm font-medium text-[#626677]">
               Deadline:
               <span className={new Date(formData.deadline) < new Date() ? 'text-red-500' : 'text-black dark:text-white'}> {formData.deadline} </span>
-
-
             </p>
           </div>
         </div>

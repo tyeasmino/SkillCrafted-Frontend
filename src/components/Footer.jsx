@@ -20,7 +20,7 @@ const Footer = () => {
                     <br />
                     Providing reliable tech since 2024
                     </p>
-                    <div className='text-[#141A34] flex gap-2 text-[20px] md:mt-5'>
+                    <div className='text-[#141A34] dark:text-white flex gap-2 text-[20px] md:mt-5'>
                         <FaFacebookF className='bg-[#babece] hover:bg-[#425BF5] p-1 rounded-full' />
                         <FaYoutube className='bg-[#babece] hover:bg-[#425BF5] p-1 rounded-full' />
                         <FaLinkedinIn className='bg-[#babece] hover:bg-[#425BF5] p-1 rounded-full' />
