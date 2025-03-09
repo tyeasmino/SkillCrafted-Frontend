@@ -901,7 +901,7 @@ const ProjectDetails = () => {
 
                                     {/* If proposal is completed and no review has been submitted */}
                                     {proposal.is_completed === '1' && !reviewSubmitted && (
-                                      <div className="text-sm text-gray-700">
+                                      <div className="text-sm text-gray-700 dark:text-gray-100">
                                         <form
                                           className="mt-3 bg-white p-5 rounded-lg shadow-lg"
                                           onSubmit={(e) => {
@@ -920,7 +920,7 @@ const ProjectDetails = () => {
                                               required
                                               className="border border-gray-300 rounded-md p-2 mt-1 w-full"
                                             >
-                                              <option value="">Select Rating</option>
+                                              <option value="" >Select Rating</option>
                                               {STAR_CHOICES.map((choice, index) => (
                                                 <option key={index} value={choice.value}>
                                                   {choice.label}
