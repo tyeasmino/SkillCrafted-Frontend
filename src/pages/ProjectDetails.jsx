@@ -509,7 +509,8 @@ const ProjectDetails = () => {
                 <div className="mb-4">
                   <p className="block text-sm font-medium text-[#626677]">Website:
                     <Link to={company.company_website} className="text-[#425BF5] ml-2" target="_blank" rel="noopener noreferrer">
-                      {company.company_website}
+                      <span className='hidden md:block'>{company.company_website}</span>
+                      <span className='md:hidden'>Click Here</span>
                     </Link>
                   </p>
                 </div>
