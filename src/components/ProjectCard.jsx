@@ -153,7 +153,7 @@ const ProjectCard = ({ limit }) => {
               return (
                 <div key={project.id}> 
                   <section className='flex flex-wrap px-3 justify-start md:gap-5'>
-                    <div className="w-full md:w-[250px] shadow-lg rounded-md p-5">
+                    <div className="min-w-[300px] md:w-[250px] shadow-lg rounded-md p-5">
                       <div className="top py-2">
                         <h6 className="text-[12px] text-[#626677] flex justify-between items-center">
                           {projectCategory ? projectCategory.name : ''} 
