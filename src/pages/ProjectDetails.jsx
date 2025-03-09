@@ -586,13 +586,13 @@ const ProjectDetails = () => {
                 {/* Modal for SkillCrafter details */}
                 {isModalOpen && (
                   <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-                    <div className="bg-white p-5 rounded-lg w-8/12  relative">
+                    <div className="bg-white p-5 rounded-lg w-11/12 md:w-8/12 relative">
                       <button onClick={() => setIsModalOpen(false)} className="absolute bg-black text-white px-5 py-2 rounded-md top-2 right-2 text-sm">
                         Close
                       </button>
                       <h3 className="text-xl font-semibold mb-4">Details</h3>
 
-                      <div className='flex gap-10'>
+                      <div className='flex flex-col md:flex-row gap-5 md:gap-10'>
                         {/* SkillCrafter Profile Info */}
                         <div className="w-full md:w-1/3">
                           <div className="mb-4 flex gap-4 items-start">

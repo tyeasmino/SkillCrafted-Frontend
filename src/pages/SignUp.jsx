@@ -196,7 +196,7 @@ const SignUp = () => {
                                 value='skillCrafter'
                                 onChange={handleChange}
                                 />
-                            <label for="skillCrafter" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100 dark:text-gray-100 ">Skill Crafter</label>
+                            <label for="skillCrafter" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100 ">Skill Crafter</label>
                         </div>
                         <div class="relative flex items-center z-0 w-full mb-5 group">
                             <input 
@@ -207,7 +207,7 @@ const SignUp = () => {
                                 value='skillSeeker'
                                 onChange={handleChange}
                                 />
-                            <label for="skillSeeker" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100  dark:text-gray-100">Skill Seeker</label>
+                            <label for="skillSeeker" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100">Skill Seeker</label>
                         </div>                        
                     </div>    
 
