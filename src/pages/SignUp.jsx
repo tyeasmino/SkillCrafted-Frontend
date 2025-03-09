@@ -105,7 +105,7 @@ const SignUp = () => {
                             type="text" 
                             name="username" 
                             id="floating_username" 
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                            class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                             placeholder=" " 
                             required
                             value={formData.username}
@@ -120,7 +120,7 @@ const SignUp = () => {
                                 type="text" 
                                 name="first_name" 
                                 id="floating_first_name" 
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                                 placeholder=" " 
                                 required 
                                 value={formData.first_name}
@@ -133,7 +133,7 @@ const SignUp = () => {
                                 type="text" 
                                 name="last_name" 
                                 id="floating_last_name" 
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                                 placeholder=" " 
                                 required
                                 value={formData.last_name}
@@ -148,7 +148,7 @@ const SignUp = () => {
                             type="email" 
                             name="email" 
                             id="floating_email" 
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer" 
+                            class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer" 
                             placeholder=" " 
                             required
                             value={formData.email}
@@ -163,7 +163,7 @@ const SignUp = () => {
                                 type="password" 
                                 name="password" 
                                 id="floating_password" 
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                                 placeholder=" " 
                                 required
                                 value={formData.password}
@@ -176,7 +176,7 @@ const SignUp = () => {
                                 type="password" 
                                 name="confirm_password" 
                                 id="floating_repeat_password" 
-                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 dark:text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
                                 placeholder=" " 
                                 required
                                 value={formData.confirm_password}
@@ -196,7 +196,7 @@ const SignUp = () => {
                                 value='skillCrafter'
                                 onChange={handleChange}
                                 />
-                            <label for="skillCrafter" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100 ">Skill Crafter</label>
+                            <label for="skillCrafter" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100 dark:text-gray-100 ">Skill Crafter</label>
                         </div>
                         <div class="relative flex items-center z-0 w-full mb-5 group">
                             <input 
@@ -207,7 +207,7 @@ const SignUp = () => {
                                 value='skillSeeker'
                                 onChange={handleChange}
                                 />
-                            <label for="skillSeeker" class="w-full py-4 ms-2 text-sm font-medium text-gray-900  dark:text-gray-100">Skill Seeker</label>
+                            <label for="skillSeeker" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-100  dark:text-gray-100">Skill Seeker</label>
                         </div>                        
                     </div>    
 
