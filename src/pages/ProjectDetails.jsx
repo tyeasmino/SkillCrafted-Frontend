@@ -423,7 +423,7 @@ const ProjectDetails = () => {
   return (
     <section className="container flex flex-col md:flex-row gap-10 mx-auto p-6">
       {/* Project Details Section */}
-      <div className="bg-white p-6 rounded-md w-full md:w-3/5 md:max-h-[800px] shadow-lg">
+      <div className="p-6 rounded-md w-full md:w-3/5 md:max-h-[800px] shadow-lg">
         <h3 className="text-2xl mb-4">Project Details</h3>
 
         {/* Category */}
